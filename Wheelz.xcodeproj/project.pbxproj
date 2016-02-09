@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60A31DA930689ECD0E1A932D /* libPods-Wheelz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7083129AC97004A55C5C55D0 /* libPods-Wheelz.a */; };
 		932951B61C69516C00364DB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951B51C69516C00364DB8 /* main.m */; };
 		932951B91C69516C00364DB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951B81C69516C00364DB8 /* AppDelegate.m */; };
-		932951BC1C69516C00364DB8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951BB1C69516C00364DB8 /* ViewController.m */; };
 		932951BF1C69516C00364DB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932951BD1C69516C00364DB8 /* Main.storyboard */; };
 		932951C11C69516C00364DB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 932951C01C69516C00364DB8 /* Assets.xcassets */; };
 		932951C41C69516C00364DB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932951C21C69516C00364DB8 /* LaunchScreen.storyboard */; };
 		932951CF1C69516C00364DB8 /* WheelzTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951CE1C69516C00364DB8 /* WheelzTests.m */; };
 		932951DA1C69516C00364DB8 /* WheelzUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951D91C69516C00364DB8 /* WheelzUITests.m */; };
+		932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951E81C695D4C00364DB8 /* XMLDictionary.m */; };
+		932951EB1C69609700364DB8 /* disability_parking.kml in Resources */ = {isa = PBXBuildFile; fileRef = 932951EA1C69609700364DB8 /* disability_parking.kml */; };
+		932951EE1C69650100364DB8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951ED1C69650100364DB8 /* HomeViewController.m */; };
+		932951F11C69652000364DB8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F01C69652000364DB8 /* DetailViewController.m */; };
+		932951F41C69653100364DB8 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F31C69653100364DB8 /* NoteViewController.m */; };
+		932951F71C69654A00364DB8 /* ParkingSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F61C69654A00364DB8 /* ParkingSpot.m */; };
+		932951FA1C69657600364DB8 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F91C69657600364DB8 /* LocationManager.m */; };
+		932951FC1C6965C700364DB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FB1C6965C700364DB8 /* CoreLocation.framework */; };
+		932951FE1C6965FE00364DB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FD1C6965FE00364DB8 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F23FB01BA9B4A04BD37B241 /* Pods-Wheelz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz.debug.xcconfig"; sourceTree = "<group>"; };
+		621E78F939C78E6612BC5714 /* Pods-Wheelz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz.release.xcconfig"; sourceTree = "<group>"; };
+		7083129AC97004A55C5C55D0 /* libPods-Wheelz.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelz.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		932951B11C69516C00364DB8 /* Wheelz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932951B51C69516C00364DB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		932951B71C69516C00364DB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		932951B81C69516C00364DB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		932951BA1C69516C00364DB8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		932951BB1C69516C00364DB8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		932951BE1C69516C00364DB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		932951C01C69516C00364DB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		932951C31C69516C00364DB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +61,21 @@
 		932951D51C69516C00364DB8 /* WheelzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		932951D91C69516C00364DB8 /* WheelzUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WheelzUITests.m; sourceTree = "<group>"; };
 		932951DB1C69516C00364DB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		932951E71C695D4C00364DB8 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		932951E81C695D4C00364DB8 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		932951EA1C69609700364DB8 /* disability_parking.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = disability_parking.kml; sourceTree = "<group>"; };
+		932951EC1C69650100364DB8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		932951ED1C69650100364DB8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		932951EF1C69652000364DB8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		932951F01C69652000364DB8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		932951F21C69653100364DB8 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
+		932951F31C69653100364DB8 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
+		932951F51C69654A00364DB8 /* ParkingSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingSpot.h; sourceTree = "<group>"; };
+		932951F61C69654A00364DB8 /* ParkingSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkingSpot.m; sourceTree = "<group>"; };
+		932951F81C69657600364DB8 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		932951F91C69657600364DB8 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		932951FB1C6965C700364DB8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		932951FD1C6965FE00364DB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932951FE1C6965FE00364DB8 /* MapKit.framework in Frameworks */,
+				932951FC1C6965C700364DB8 /* CoreLocation.framework in Frameworks */,
+				60A31DA930689ECD0E1A932D /* libPods-Wheelz.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +113,8 @@
 				932951CD1C69516C00364DB8 /* WheelzTests */,
 				932951D81C69516C00364DB8 /* WheelzUITests */,
 				932951B21C69516C00364DB8 /* Products */,
+				D93654310B366A75569C2FB3 /* Pods */,
+				F3DC337A0FF0962C19F2CB1F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +131,22 @@
 		932951B31C69516C00364DB8 /* Wheelz */ = {
 			isa = PBXGroup;
 			children = (
+				932951EA1C69609700364DB8 /* disability_parking.kml */,
+				932951E71C695D4C00364DB8 /* XMLDictionary.h */,
+				932951E81C695D4C00364DB8 /* XMLDictionary.m */,
 				932951B71C69516C00364DB8 /* AppDelegate.h */,
 				932951B81C69516C00364DB8 /* AppDelegate.m */,
-				932951BA1C69516C00364DB8 /* ViewController.h */,
-				932951BB1C69516C00364DB8 /* ViewController.m */,
 				932951BD1C69516C00364DB8 /* Main.storyboard */,
+				932951EC1C69650100364DB8 /* HomeViewController.h */,
+				932951ED1C69650100364DB8 /* HomeViewController.m */,
+				932951EF1C69652000364DB8 /* DetailViewController.h */,
+				932951F01C69652000364DB8 /* DetailViewController.m */,
+				932951F21C69653100364DB8 /* NoteViewController.h */,
+				932951F31C69653100364DB8 /* NoteViewController.m */,
+				932951F81C69657600364DB8 /* LocationManager.h */,
+				932951F91C69657600364DB8 /* LocationManager.m */,
+				932951F51C69654A00364DB8 /* ParkingSpot.h */,
+				932951F61C69654A00364DB8 /* ParkingSpot.m */,
 				932951C01C69516C00364DB8 /* Assets.xcassets */,
 				932951C21C69516C00364DB8 /* LaunchScreen.storyboard */,
 				932951C51C69516C00364DB8 /* Info.plist */,
@@ -140,6 +181,25 @@
 			path = WheelzUITests;
 			sourceTree = "<group>";
 		};
+		D93654310B366A75569C2FB3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F23FB01BA9B4A04BD37B241 /* Pods-Wheelz.debug.xcconfig */,
+				621E78F939C78E6612BC5714 /* Pods-Wheelz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F3DC337A0FF0962C19F2CB1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				932951FD1C6965FE00364DB8 /* MapKit.framework */,
+				932951FB1C6965C700364DB8 /* CoreLocation.framework */,
+				7083129AC97004A55C5C55D0 /* libPods-Wheelz.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 932951DE1C69516C00364DB8 /* Build configuration list for PBXNativeTarget "Wheelz" */;
 			buildPhases = (
+				B909B88266EE1F4253EA4FC1 /* Check Pods Manifest.lock */,
 				932951AD1C69516C00364DB8 /* Sources */,
 				932951AE1C69516C00364DB8 /* Frameworks */,
 				932951AF1C69516C00364DB8 /* Resources */,
+				767496BA0D84673C284283D8 /* Embed Pods Frameworks */,
+				A45F8F618B4F125567DB548E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				932951C41C69516C00364DB8 /* LaunchScreen.storyboard in Resources */,
+				932951EB1C69609700364DB8 /* disability_parking.kml in Resources */,
 				932951C11C69516C00364DB8 /* Assets.xcassets in Resources */,
 				932951BF1C69516C00364DB8 /* Main.storyboard in Resources */,
 			);
@@ -268,14 +332,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		767496BA0D84673C284283D8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A45F8F618B4F125567DB548E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B909B88266EE1F4253EA4FC1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		932951AD1C69516C00364DB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				932951BC1C69516C00364DB8 /* ViewController.m in Sources */,
+				932951FA1C69657600364DB8 /* LocationManager.m in Sources */,
+				932951F11C69652000364DB8 /* DetailViewController.m in Sources */,
+				932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */,
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
+				932951F71C69654A00364DB8 /* ParkingSpot.m in Sources */,
 				932951B61C69516C00364DB8 /* main.m in Sources */,
+				932951F41C69653100364DB8 /* NoteViewController.m in Sources */,
+				932951EE1C69650100364DB8 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +531,7 @@
 		};
 		932951DF1C69516C00364DB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F23FB01BA9B4A04BD37B241 /* Pods-Wheelz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wheelz/Info.plist;
@@ -425,6 +543,7 @@
 		};
 		932951E01C69516C00364DB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 621E78F939C78E6612BC5714 /* Pods-Wheelz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wheelz/Info.plist;
@@ -501,6 +620,7 @@
 				932951E01C69516C00364DB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		932951E11C69516C00364DB8 /* Build configuration list for PBXNativeTarget "WheelzTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +629,7 @@
 				932951E31C69516C00364DB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		932951E41C69516C00364DB8 /* Build configuration list for PBXNativeTarget "WheelzUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +638,7 @@
 				932951E61C69516C00364DB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
