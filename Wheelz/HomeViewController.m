@@ -90,6 +90,7 @@
 }
 
 
+
 -(void)someMethod {
 
     //omg a method srsly its p badass
@@ -98,5 +99,6 @@
     
 
 }
+
 
 @end
