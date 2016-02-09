@@ -9,6 +9,7 @@
 #import "LocationManager.h"
 #import <UIKit/UIKit.h>
 
+
 @implementation LocationManager
 
 + (LocationManager *)locationManager {
@@ -30,7 +31,7 @@
         _locationManager.distanceFilter = 10;
         _locationManager.delegate = self;
         [_locationManager requestWhenInUseAuthorization];
-        NSLog(@"new location manager in startLocationManager");
+        NSLog(@"new location manager in setupLocationManager");
     }
     [_locationManager startUpdatingLocation];
     
@@ -51,7 +52,7 @@
                                                                               preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * action) {
-                                                           //
+                                                           
                                                        }];
             [alertController addAction:ok];
         }
@@ -86,7 +87,7 @@
         return;
     }
     
-    if (_currentLocation == nil || _currentLocation.horizontalAccuracy >= loc.horizontalAccuracy){
+    if (_currentLocation == nil || _currentLocation.horizontalAccuracy >= loc.horizontalAccuracy) {
         _currentLocation = loc;
         
         if (loc.horizontalAccuracy <= _locationManager.desiredAccuracy) {

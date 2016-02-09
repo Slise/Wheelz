@@ -2,7 +2,7 @@
 //  DetailViewController.m
 //  Wheelz
 //
-//  Created by Benson Huynh on 2016-02-08.
+//  Created by Benson Huynh & Dave Hurley on 2016-02-08.
 //  Copyright © 2016 Benson Huynh. All rights reserved.
 //
 
@@ -22,6 +22,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)getDirectionButtonPressed:(id)sender {
+    
+    NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 /*
