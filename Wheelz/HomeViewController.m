@@ -7,8 +7,21 @@
 //
 
 #import "HomeViewController.h"
+#import "XMLDictionary.h"
+#import "DetailViewController.h"
+#import "ParkingSpot.h"
+#import "LocationManager.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface HomeViewController ()
+#define zoominMapArea 2100
+
+@interface HomeViewController () <MKMapViewDelegate>
+
+@property (strong, nonatomic) LocationManager *locationManager;
+@property (strong,nonatomic) CLLocation *currentLocation;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) NSMutableArray *parkingSpots;
 
 @end
 
@@ -16,22 +29,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self downloadParkingLocation];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)downloadParkingLocation {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"disability_parking" ofType:@"kml"];
+    NSDictionary *xmlDoc = [NSDictionary dictionaryWithXMLFile:filePath];
+    NSLog(@"%@", xmlDoc);
+    
+    self.parkingSpots = xmlDoc[@"Document"][@"Folder"][@"Placemark"];
+    
+    for (NSDictionary *spot in self.parkingSpots) {
+        NSString *address = [spot objectForKey:@"name"];
+        NSString *desciption = [spot objectForKey:@"description"];
+        NSString *location = spot[@"Point"][@"coordinates"];
+        NSArray *coordinates = [location componentsSeparatedByString:@","];
+        NSNumber *lng = @([coordinates[0] doubleValue]);
+        NSNumber *lat = @([coordinates[1] doubleValue]);
+        
+        //NSLog(@"lat %@ lng %@ %@", lat, lng, address);
+        
+        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
+        NSLog(@" coord %f %f", spotLocation.latitude, spotLocation.longitude);
+    }
 }
-*/
 
 @end

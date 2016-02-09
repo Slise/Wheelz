@@ -55,9 +55,6 @@
 
 @implementation XMLDictionaryParser
 
-NSString *filePath = [[NSBundle mainBundle] pathForResource:@"disabilty_parking" ofType:@"kml"];
-NSDictionary *xmlDoc = [NSDictionary dictionaryWithXMLFile:filePath];
-
 + (XMLDictionaryParser *)sharedInstance
 {
     static dispatch_once_t once;
