@@ -25,6 +25,7 @@
 		932951FC1C6965C700364DB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FB1C6965C700364DB8 /* CoreLocation.framework */; };
 		932951FE1C6965FE00364DB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FD1C6965FE00364DB8 /* MapKit.framework */; };
 		93CCA1BF1C6A762100F72046 /* Vancouver.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 93CCA1BE1C6A762100F72046 /* Vancouver.gpx */; };
+		93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		932951FB1C6965C700364DB8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		932951FD1C6965FE00364DB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		93CCA1BE1C6A762100F72046 /* Vancouver.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vancouver.gpx; sourceTree = "<group>"; };
+		93CCA1C01C6A9D1500F72046 /* Wheelz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wheelz-Bridging-Header.h"; sourceTree = "<group>"; };
+		93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpotAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,10 +153,12 @@
 				932951F91C69657600364DB8 /* LocationManager.m */,
 				932951F51C69654A00364DB8 /* ParkingSpot.h */,
 				932951F61C69654A00364DB8 /* ParkingSpot.m */,
+				93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */,
 				932951C01C69516C00364DB8 /* Assets.xcassets */,
 				932951C21C69516C00364DB8 /* LaunchScreen.storyboard */,
 				932951C51C69516C00364DB8 /* Info.plist */,
 				932951B41C69516C00364DB8 /* Supporting Files */,
+				93CCA1C01C6A9D1500F72046 /* Wheelz-Bridging-Header.h */,
 			);
 			path = Wheelz;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				932951F11C69652000364DB8 /* DetailViewController.m in Sources */,
 				932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */,
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
+				93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */,
 				932951F71C69654A00364DB8 /* ParkingSpot.m in Sources */,
 				932951B61C69516C00364DB8 /* main.m in Sources */,
 				932951F41C69653100364DB8 /* NoteViewController.m in Sources */,
@@ -538,10 +544,13 @@
 			baseConfigurationReference = 2F23FB01BA9B4A04BD37B241 /* Pods-Wheelz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Wheelz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wheelz/Wheelz-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -550,10 +559,12 @@
 			baseConfigurationReference = 621E78F939C78E6612BC5714 /* Pods-Wheelz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Wheelz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wheelz/Wheelz-Bridging-Header.h";
 			};
 			name = Release;
 		};
