@@ -10,4 +10,15 @@
 
 @implementation ParkingSpot
 
+- (instancetype)initWithName:(NSString *)name detail:(NSString *)detail coordinate:(CLLocationCoordinate2D)coordinate {
+    self = [super init];
+    if (self) {
+        _name = name;
+        _detail = detail;
+        _coordinate = coordinate;
+    }
+    return self;
+}
+
+
 @end
