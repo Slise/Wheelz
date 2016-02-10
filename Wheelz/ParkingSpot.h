@@ -10,9 +10,9 @@
 
 @interface ParkingSpot : RLMObject
 
+@property (nonatomic, strong) NSString * uniqueID;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *spotDescription;
-
 @property (nonatomic, assign) double lng;
 @property (nonatomic, assign) double lat;
 

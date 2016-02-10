@@ -24,7 +24,6 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)getDirectionButtonPressed:(id)sender {
-    
     NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
     [[UIApplication sharedApplication] openURL:url];
 }

@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    NSLog(@"%@ " , [RLMRealm defaultRealm].path);
+//    NSLog(@"%@ " , [RLMRealm defaultRealm].path);
     
     return YES;
 }

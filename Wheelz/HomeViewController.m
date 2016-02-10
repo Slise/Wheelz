@@ -11,8 +11,7 @@
 #import "DetailViewController.h"
 #import "LocationManager.h"
 #import <AddressBookUI/AddressBookUI.h>
-#import <CoreLocation/CLGeocoder.h>
-#import <CoreLocation/CLPlacemark.h>
+#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "Wheelz-Swift.h"
 #import "ParkingSpot.h"
@@ -42,7 +41,12 @@
 }
 
 -(void)addParkSpotAnnoptation {
-    
+    RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
+    NSLog(@"%@",parkingSpot);
+    ParkingSpot *aSpot = [parkingSpot firstObject];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
+    ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
+    [self.mapView addAnnotation:aAnnotation];
 }
 
 -(void)locationUpdate {
@@ -76,6 +80,7 @@
     
     for (NSDictionary *spot in self.parkingSpots) {
         
+        NSString *uniqueID = [spot objectForKey:@"_id"];
         NSString *name = [spot objectForKey:@"name"];
         NSString *spotDesciption = [spot objectForKey:@"description"];
         NSString *location = spot[@"Point"][@"coordinates"];
@@ -84,39 +89,59 @@
         double lng = [coordinates[0] doubleValue];
         double lat = [coordinates[1] doubleValue];
 
-        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
+//        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
         
         ParkingSpot *newSpot = [ParkingSpot new];
+        newSpot.uniqueID = uniqueID;
         newSpot.name = name;
         newSpot.spotDescription = spotDesciption;
         newSpot.lng = lng;
         newSpot.lat = lat;
-        
         RLMRealm *realm = [RLMRealm defaultRealm];
-        
-        [realm transactionWithBlock:^{
-            [realm addObject:newSpot];
-        }];
-        
-        
+        [realm beginWriteTransaction];
+        [realm addOrUpdateObject:newSpot];
+        [realm commitWriteTransaction];
     }
+    [self addParkSpotAnnoptation];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    
-    return [[MKAnnotationView alloc] init];
-    
-    
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
+    if (view) {
+        view.annotation = annotation;
+    } else {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
+        UIButton *btnViewVenue = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        view.rightCalloutAccessoryView=btnViewVenue;
+        view.enabled = YES;
+        view.canShowCallout = YES;
+        view.multipleTouchEnabled = NO;
+        view.animatesDrop = YES;
+        UIImage *image = [UIImage imageNamed:@""];
+        UIButton *openGoogleMap = [UIButton buttonWithType:UIButtonTypeCustom];
+        openGoogleMap.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        [openGoogleMap setImage:image forState:UIControlStateNormal];
+        view.leftCalloutAccessoryView = openGoogleMap;
+        
+    }       
+    return view;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+//    NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
+//    [[UIApplication sharedApplication] openURL:url];
+//
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     [view setCanShowCallout:YES];
-    
-}
-
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    
     
 }
 
