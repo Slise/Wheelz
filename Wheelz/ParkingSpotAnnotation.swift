@@ -11,9 +11,10 @@ import MapKit
 
 class ParkSpotAnnotation: NSObject, MKAnnotation {
    
-    let coordinate: CLLocationCoordinate2D
-    let address: String
     let title: String?
+    var coordinate: CLLocationCoordinate2D
+    var address: String
+
     
     init(coordinate: CLLocationCoordinate2D, address: String, title: String) {
         self.coordinate = coordinate

@@ -12,10 +12,11 @@
 #import "LocationManager.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 #import "Wheelz-Swift.h"
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
+#import <MapKit/MapKit.h>
+
 
 #define zoominMapArea 2100
 
@@ -39,6 +40,7 @@
     self.locationManager = [LocationManager locationManager];
     [self.locationManager startLocationManager];
 }
+
 
 -(void)addParkSpotAnnoptation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
