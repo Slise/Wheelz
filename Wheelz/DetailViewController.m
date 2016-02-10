@@ -12,8 +12,8 @@
 @interface DetailViewController () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *detailMapView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailAddressLabel;
 
 @end
 
