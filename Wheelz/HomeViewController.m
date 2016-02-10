@@ -42,7 +42,7 @@
 }
 
 
--(void)addParkSpotAnnoptation {
+-(void)addParkSpotAnnotation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
     NSLog(@"%@",parkingSpot);
     ParkingSpot *aSpot = [parkingSpot firstObject];
@@ -104,7 +104,7 @@
         [realm addOrUpdateObject:newSpot];
         [realm commitWriteTransaction];
     }
-    [self addParkSpotAnnoptation];
+    [self addParkSpotAnnotation];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
