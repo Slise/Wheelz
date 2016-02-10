@@ -11,12 +11,12 @@
 #import "DetailViewController.h"
 #import "LocationManager.h"
 #import <AddressBookUI/AddressBookUI.h>
-#import <CoreLocation/CLGeocoder.h>
-#import <CoreLocation/CLPlacemark.h>
-#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "Wheelz-Swift.h"
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
+#import <MapKit/MapKit.h>
+
 
 #define zoominMapArea 2100
 
@@ -41,7 +41,8 @@
     [self.locationManager startLocationManager];
 }
 
--(void)addParkSpotAnnoptation {
+-(void)addParkSpotAnnotation {
+
     
 }
 
