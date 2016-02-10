@@ -20,11 +20,11 @@
 		932951EE1C69650100364DB8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951ED1C69650100364DB8 /* HomeViewController.m */; };
 		932951F11C69652000364DB8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F01C69652000364DB8 /* DetailViewController.m */; };
 		932951F41C69653100364DB8 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F31C69653100364DB8 /* NoteViewController.m */; };
-		932951F71C69654A00364DB8 /* ParkingSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F61C69654A00364DB8 /* ParkingSpot.m */; };
 		932951FA1C69657600364DB8 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F91C69657600364DB8 /* LocationManager.m */; };
 		932951FC1C6965C700364DB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FB1C6965C700364DB8 /* CoreLocation.framework */; };
 		932951FE1C6965FE00364DB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FD1C6965FE00364DB8 /* MapKit.framework */; };
 		93CCA1BF1C6A762100F72046 /* Vancouver.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 93CCA1BE1C6A762100F72046 /* Vancouver.gpx */; };
+		CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,13 +71,13 @@
 		932951F01C69652000364DB8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		932951F21C69653100364DB8 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		932951F31C69653100364DB8 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
-		932951F51C69654A00364DB8 /* ParkingSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingSpot.h; sourceTree = "<group>"; };
-		932951F61C69654A00364DB8 /* ParkingSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkingSpot.m; sourceTree = "<group>"; };
 		932951F81C69657600364DB8 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		932951F91C69657600364DB8 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		932951FB1C6965C700364DB8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		932951FD1C6965FE00364DB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		93CCA1BE1C6A762100F72046 /* Vancouver.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vancouver.gpx; sourceTree = "<group>"; };
+		CF71A83C1C6AB69B00C54946 /* ParkingSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingSpot.h; sourceTree = "<group>"; };
+		CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkingSpot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +148,8 @@
 				932951F31C69653100364DB8 /* NoteViewController.m */,
 				932951F81C69657600364DB8 /* LocationManager.h */,
 				932951F91C69657600364DB8 /* LocationManager.m */,
-				932951F51C69654A00364DB8 /* ParkingSpot.h */,
-				932951F61C69654A00364DB8 /* ParkingSpot.m */,
+				CF71A83C1C6AB69B00C54946 /* ParkingSpot.h */,
+				CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */,
 				932951C01C69516C00364DB8 /* Assets.xcassets */,
 				932951C21C69516C00364DB8 /* LaunchScreen.storyboard */,
 				932951C51C69516C00364DB8 /* Info.plist */,
@@ -391,9 +391,9 @@
 			files = (
 				932951FA1C69657600364DB8 /* LocationManager.m in Sources */,
 				932951F11C69652000364DB8 /* DetailViewController.m in Sources */,
+				CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */,
 				932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */,
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
-				932951F71C69654A00364DB8 /* ParkingSpot.m in Sources */,
 				932951B61C69516C00364DB8 /* main.m in Sources */,
 				932951F41C69653100364DB8 /* NoteViewController.m in Sources */,
 				932951EE1C69650100364DB8 /* HomeViewController.m in Sources */,

@@ -2,20 +2,23 @@
 //  ParkingSpot.h
 //  Wheelz
 //
-//  Created by Benson Huynh on 2016-02-08.
+//  Created by Dave Hurley on 2016-02-09.
 //  Copyright © 2016 Benson Huynh. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
+#import <Realm/Realm.h>
 
-@interface ParkingSpot : NSObject
+@interface ParkingSpot : RLMObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *detail;
-@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) NSString *spotDescription;
 
-- (instancetype)initWithName:(NSString *)name detail:(NSString *)detail coordinate:(CLLocationCoordinate2D)coordinate;
+@property (nonatomic, assign) double lng;
+@property (nonatomic, assign) double lat;
 
 @end
+
+// This protocol enables typed collections. i.e.:
+// RLMArray<ParkingSpot>
+
+RLM_ARRAY_TYPE(ParkingSpot)

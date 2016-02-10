@@ -9,12 +9,13 @@
 #import "HomeViewController.h"
 #import "XMLDictionary.h"
 #import "DetailViewController.h"
-#import "ParkingSpot.h"
 #import "LocationManager.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CLGeocoder.h>
 #import <CoreLocation/CLPlacemark.h>
 #import <MapKit/MapKit.h>
+#import "ParkingSpot.h"
+#import <Realm/Realm.h>
 
 #define zoominMapArea 2100
 
@@ -45,13 +46,13 @@
     
     NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
     
-    _currentLocation = _locationManager.currentLocation;
-    CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([_currentLocation coordinate].latitude, [_currentLocation coordinate].longitude);
+    self.currentLocation = self.locationManager.currentLocation;
+    CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([self.currentLocation coordinate].latitude, [self.currentLocation coordinate].longitude);
     MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
     [self.mapView setRegion:adjustedRegion animated:YES];
     
     CLGeocoder *geocoder = [CLGeocoder new];
-    [geocoder reverseGeocodeLocation:_currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+    [geocoder reverseGeocodeLocation:self.currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         
         if (error) {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -67,37 +68,41 @@
 -(void)downloadParkingLocation {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"disability_parking" ofType:@"kml"];
     NSDictionary *xmlDoc = [NSDictionary dictionaryWithXMLFile:filePath];
-    NSLog(@"%@", xmlDoc);
     
     self.parkingSpots = xmlDoc[@"Document"][@"Folder"][@"Placemark"];
     
     for (NSDictionary *spot in self.parkingSpots) {
-        NSString *address = [spot objectForKey:@"name"];
-        NSString *desciption = [spot objectForKey:@"description"];
+        
+        NSString *name = [spot objectForKey:@"name"];
+        NSString *spotDesciption = [spot objectForKey:@"description"];
         NSString *location = spot[@"Point"][@"coordinates"];
+        
         NSArray *coordinates = [location componentsSeparatedByString:@","];
-        NSNumber *lng = @([coordinates[0] doubleValue]);
-        NSNumber *lat = @([coordinates[1] doubleValue]);
-        //NSLog(@"lat %@ lng %@ %@", lat, lng, address);
-        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
-        NSLog(@" coord %f %f", spotLocation.latitude, spotLocation.longitude);
+        double lng = [coordinates[0] doubleValue];
+        double lat = [coordinates[1] doubleValue];
+
+        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
+        
+        ParkingSpot *newSpot = [ParkingSpot new];
+        newSpot.name = name;
+        newSpot.spotDescription = spotDesciption;
+        newSpot.lng = lng;
+        newSpot.lat = lat;
+        
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        
+        [realm transactionWithBlock:^{
+            [realm addObject:newSpot];
+        }];
+        
+        
     }
 }
+
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     [view setCanShowCallout:YES];
-}
-
-
-
--(void)someMethod {
-
-    //omg a method srsly its p badass
-    
-    // a change here we go -------
-    
-
 }
 
 

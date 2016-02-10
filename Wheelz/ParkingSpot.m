@@ -2,7 +2,7 @@
 //  ParkingSpot.m
 //  Wheelz
 //
-//  Created by Benson Huynh on 2016-02-08.
+//  Created by Dave Hurley on 2016-02-09.
 //  Copyright © 2016 Benson Huynh. All rights reserved.
 //
 
@@ -10,15 +10,18 @@
 
 @implementation ParkingSpot
 
-- (instancetype)initWithName:(NSString *)name detail:(NSString *)detail coordinate:(CLLocationCoordinate2D)coordinate {
-    self = [super init];
-    if (self) {
-        _name = name;
-        _detail = detail;
-        _coordinate = coordinate;
-    }
-    return self;
+// Specify default values for properties
+
++ (NSDictionary *)defaultPropertyValues
+{
+    return @{@"name":@"", @"spotDescription":@"", @"lng":@0, @"lat":@0};
 }
 
+// Specify properties to ignore (Realm won't persist these)
+
++ (NSArray *)ignoredProperties
+{
+    return @[];
+}
 
 @end
