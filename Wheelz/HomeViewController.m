@@ -12,10 +12,11 @@
 #import "LocationManager.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 #import "Wheelz-Swift.h"
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
+#import <MapKit/MapKit.h>
+
 
 #define zoominMapArea 2100
 
@@ -40,7 +41,8 @@
     [self.locationManager startLocationManager];
 }
 
--(void)addParkSpotAnnoptation {
+
+-(void)addParkSpotAnnotation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
     NSLog(@"%@",parkingSpot);
     for (ParkingSpot *aSpot in parkingSpot){
@@ -103,7 +105,7 @@
         [realm addOrUpdateObject:newSpot];
         [realm commitWriteTransaction];
     }
-    [self addParkSpotAnnoptation];
+    [self addParkSpotAnnotation];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
