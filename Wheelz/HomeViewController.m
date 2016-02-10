@@ -16,7 +16,7 @@
 #import <Realm/Realm.h>
 #import <MapKit/MapKit.h>
 
-#define zoominMapArea 2100
+#define zoominMapArea 1800
 
 @interface HomeViewController () <MKMapViewDelegate>
 
@@ -34,6 +34,8 @@
     self.mapView.showsUserLocation = true;
     self.locationManager = [LocationManager locationManager];
     [self.locationManager startLocationManager];
+    [self locationUpdate];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
 }
 
 
@@ -48,9 +50,11 @@
 }
 
 -(void)locationUpdate {
-    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
+//    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
     self.currentLocation = self.locationManager.currentLocation;
     CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([self.currentLocation coordinate].latitude, [self.currentLocation coordinate].longitude);
+    MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
+    [self.mapView setRegion:adjustedRegion animated:YES];
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:self.currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         
@@ -63,9 +67,6 @@
             }
         }
     }];
-    MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
-    [self.mapView setRegion:adjustedRegion animated:YES];
-    
 }
 
 -(void)addParkSpotAnnoptation {

@@ -2,7 +2,7 @@
 //  ParkingSpotAnnotation.swift
 //  Wheelz
 //
-//  Created by Benson Huynh on 2016-02-09.
+//  Created by Benson Huynh & Dave Hurley on 2016-02-09.
 //  Copyright © 2016 Benson Huynh. All rights reserved.
 //
 
