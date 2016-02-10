@@ -43,10 +43,11 @@
 -(void)addParkSpotAnnoptation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
     NSLog(@"%@",parkingSpot);
-    ParkingSpot *aSpot = [parkingSpot firstObject];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
-    ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
-    [self.mapView addAnnotation:aAnnotation];
+    for (ParkingSpot *aSpot in parkingSpot){
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
+        ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
+        [self.mapView addAnnotation:aAnnotation];
+    }
 }
 
 -(void)locationUpdate {
@@ -114,29 +115,33 @@
         view.annotation = annotation;
     } else {
         view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
-        UIButton *btnViewVenue = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        view.rightCalloutAccessoryView=btnViewVenue;
+        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        view.rightCalloutAccessoryView= infoButton;
+        infoButton.tag = 1200;
         view.enabled = YES;
         view.canShowCallout = YES;
         view.multipleTouchEnabled = NO;
         view.animatesDrop = YES;
-        UIImage *image = [UIImage imageNamed:@""];
+        UIImage *image = [UIImage imageNamed:@"car_nav.png"];
         UIButton *openGoogleMap = [UIButton buttonWithType:UIButtonTypeCustom];
-        openGoogleMap.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        openGoogleMap.frame = CGRectMake(0, 0, 44, 44);
         [openGoogleMap setImage:image forState:UIControlStateNormal];
         view.leftCalloutAccessoryView = openGoogleMap;
+        openGoogleMap.tag = 1000;
         
     }       
     return view;
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
-//    NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
-//    [[UIApplication sharedApplication] openURL:url];
-//
+    if (control.tag == 1000) {
+        NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
+        [[UIApplication sharedApplication] openURL:url];
+    } else if (control.tag == 1200) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
