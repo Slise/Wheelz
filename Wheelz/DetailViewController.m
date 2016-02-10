@@ -7,8 +7,13 @@
 //
 
 #import "DetailViewController.h"
+#import <MapKit/MapKit.h>
 
-@interface DetailViewController ()
+@interface DetailViewController () <MKMapViewDelegate>
+
+@property (weak, nonatomic) IBOutlet MKMapView *detailMapView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end
 
@@ -24,8 +29,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)getDirectionButtonPressed:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
-    [[UIApplication sharedApplication] openURL:url];
+    
 }
 
 /*
