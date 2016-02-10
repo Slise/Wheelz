@@ -5,7 +5,6 @@
 //  Created by Benson Huynh & Dave Hurley on 2016-02-08.
 //  Copyright © 2016 Benson Huynh. All rights reserved.
 //
-
 #import "HomeViewController.h"
 #import "XMLDictionary.h"
 #import "DetailViewController.h"
@@ -16,7 +15,6 @@
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
 #import <MapKit/MapKit.h>
-
 
 #define zoominMapArea 2100
 
@@ -35,10 +33,6 @@
     [super viewDidLoad];
     self.mapView.showsUserLocation = true;
     self.locationManager = [LocationManager locationManager];
-//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//    [self.locationManager startUpdatingLocation];
     [self.locationManager startLocationManager];
 }
 
@@ -74,14 +68,8 @@
     
 }
 
-//-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-//    MKMapCamera *camera = [MKMapCamera cameraLookingAtCenterCoordinate:userLocation.coordinate fromEyeCoordinate:CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude) eyeAltitude:1700];
-//        [self.mapView setCamera:camera animated:YES];
-//}
-
 -(void)addParkSpotAnnoptation {
     RLMResults<ParkingSpot*> *parkingSpot = [ParkingSpot allObjects];
-//    NSLog(@"%@",parkingSpot);
     for (ParkingSpot *aSpot in parkingSpot){
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
         ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
@@ -106,7 +94,6 @@
         double lat = [coordinates[1] doubleValue];
 
 //        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
-        
         ParkingSpot *newSpot = [[ParkingSpot alloc] init];
         newSpot.uniqueID = uniqueID;
         newSpot.name = name;
@@ -143,7 +130,6 @@
         [openGoogleMap setImage:image forState:UIControlStateNormal];
         view.leftCalloutAccessoryView = openGoogleMap;
         openGoogleMap.tag = 1000;
-        
     }       
     return view;
 }
@@ -152,8 +138,6 @@
     if (control.tag == 1000) {
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"comgooglemaps://"]];
-            
-            
         }else {
             NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
             [[UIApplication sharedApplication] openURL:url];
@@ -168,22 +152,21 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     [view setCanShowCallout:YES];
-    
 }
 
-- (IBAction)btnStandardTapped:(id)sender
-{
-    [self.mapView setMapType:MKMapTypeStandard];
-}
-
-- (IBAction)btnSatelliteTapped:(id)sender
-{
-    [self.mapView setMapType:MKMapTypeSatellite];
-}
-
-- (IBAction)btnHybridTapped:(id)sender
-{
-    [self.mapView setMapType:MKMapTypeHybrid];
-}
+//- (IBAction)btnStandardTapped:(id)sender
+//{
+//    [self.mapView setMapType:MKMapTypeStandard];
+//}
+//
+//- (IBAction)btnSatelliteTapped:(id)sender
+//{
+//    [self.mapView setMapType:MKMapTypeSatellite];
+//}
+//
+//- (IBAction)btnHybridTapped:(id)sender
+//{
+//    [self.mapView setMapType:MKMapTypeHybrid];
+//}
 
 @end
