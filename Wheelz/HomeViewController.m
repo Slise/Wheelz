@@ -15,6 +15,8 @@
 #import <CoreLocation/CLPlacemark.h>
 #import <MapKit/MapKit.h>
 #import "Wheelz-Swift.h"
+#import "ParkingSpot.h"
+#import <Realm/Realm.h>
 
 #define zoominMapArea 2100
 
@@ -103,9 +105,6 @@
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
     return [[MKAnnotationView alloc] init];
-}
-
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     
     
 }
@@ -113,7 +112,12 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     [view setCanShowCallout:YES];
+    
 }
 
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    
+    
+}
 
 @end
