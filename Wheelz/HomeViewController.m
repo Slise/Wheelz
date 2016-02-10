@@ -33,11 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self locationUpdate];
     self.mapView.showsUserLocation = true;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
     self.locationManager = [LocationManager locationManager];
+//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [self.locationManager requestWhenInUseAuthorization];
+//    }
+//    [self.locationManager startUpdatingLocation];
     [self.locationManager startLocationManager];
 }
 
@@ -53,14 +54,9 @@
 }
 
 -(void)locationUpdate {
-    
     NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
-    
     self.currentLocation = self.locationManager.currentLocation;
     CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([self.currentLocation coordinate].latitude, [self.currentLocation coordinate].longitude);
-    MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
-    [self.mapView setRegion:adjustedRegion animated:YES];
-    
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:self.currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         
@@ -73,28 +69,45 @@
             }
         }
     }];
+    MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
+    [self.mapView setRegion:adjustedRegion animated:YES];
+    
+}
+
+//-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+//    MKMapCamera *camera = [MKMapCamera cameraLookingAtCenterCoordinate:userLocation.coordinate fromEyeCoordinate:CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude) eyeAltitude:1700];
+//        [self.mapView setCamera:camera animated:YES];
+//}
+
+-(void)addParkSpotAnnoptation {
+    RLMResults<ParkingSpot*> *parkingSpot = [ParkingSpot allObjects];
+//    NSLog(@"%@",parkingSpot);
+    for (ParkingSpot *aSpot in parkingSpot){
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
+        ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
+        [self.mapView addAnnotation:aAnnotation];
+    }
 }
 
 -(void)downloadParkingLocation {
+    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"disability_parking" ofType:@"kml"];
     NSDictionary *xmlDoc = [NSDictionary dictionaryWithXMLFile:filePath];
     
     self.parkingSpots = xmlDoc[@"Document"][@"Folder"][@"Placemark"];
     
     for (NSDictionary *spot in self.parkingSpots) {
-        
         NSString *uniqueID = [spot objectForKey:@"_id"];
         NSString *name = [spot objectForKey:@"name"];
         NSString *spotDesciption = [spot objectForKey:@"description"];
         NSString *location = spot[@"Point"][@"coordinates"];
-        
         NSArray *coordinates = [location componentsSeparatedByString:@","];
         double lng = [coordinates[0] doubleValue];
         double lat = [coordinates[1] doubleValue];
 
 //        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
         
-        ParkingSpot *newSpot = [ParkingSpot new];
+        ParkingSpot *newSpot = [[ParkingSpot alloc] init];
         newSpot.uniqueID = uniqueID;
         newSpot.name = name;
         newSpot.spotDescription = spotDesciption;
@@ -137,8 +150,14 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     if (control.tag == 1000) {
-        NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
-        [[UIApplication sharedApplication] openURL:url];
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"comgooglemaps://"]];
+            
+            
+        }else {
+            NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
+            [[UIApplication sharedApplication] openURL:url];
+        }
     } else if (control.tag == 1200) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
@@ -150,6 +169,21 @@
 {
     [view setCanShowCallout:YES];
     
+}
+
+- (IBAction)btnStandardTapped:(id)sender
+{
+    [self.mapView setMapType:MKMapTypeStandard];
+}
+
+- (IBAction)btnSatelliteTapped:(id)sender
+{
+    [self.mapView setMapType:MKMapTypeSatellite];
+}
+
+- (IBAction)btnHybridTapped:(id)sender
+{
+    [self.mapView setMapType:MKMapTypeHybrid];
 }
 
 @end
