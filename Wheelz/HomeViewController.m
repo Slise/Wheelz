@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self downloadParkingLocation];
+    [self locationUpdate];
     self.mapView.showsUserLocation = true;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
