@@ -15,6 +15,7 @@
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
 #import <MapKit/MapKit.h>
+#import "SearchViewController.h"
 
 #define zoominMapArea 1800
 
@@ -36,8 +37,15 @@
     [self.locationManager startLocationManager];
     [self locationUpdate];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+      @{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:26.0f],
+            NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    
+}
 
 -(void)addParkSpotAnnotation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
@@ -69,17 +77,7 @@
     }];
 }
 
--(void)addParkSpotAnnoptation {
-    RLMResults<ParkingSpot*> *parkingSpot = [ParkingSpot allObjects];
-    for (ParkingSpot *aSpot in parkingSpot){
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
-        ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
-        [self.mapView addAnnotation:aAnnotation];
-    }
-}
-
 -(void)downloadParkingLocation {
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"disability_parking" ofType:@"kml"];
     NSDictionary *xmlDoc = [NSDictionary dictionaryWithXMLFile:filePath];
     
@@ -93,7 +91,6 @@
         NSArray *coordinates = [location componentsSeparatedByString:@","];
         double lng = [coordinates[0] doubleValue];
         double lat = [coordinates[1] doubleValue];
-
 //        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
         ParkingSpot *newSpot = [[ParkingSpot alloc] init];
         newSpot.uniqueID = uniqueID;
@@ -154,6 +151,8 @@
 {
     [view setCanShowCallout:YES];
 }
+
+//map style buttons
 
 //- (IBAction)btnStandardTapped:(id)sender
 //{
