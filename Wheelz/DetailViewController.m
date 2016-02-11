@@ -54,16 +54,14 @@
 
 - (IBAction)getDirectionButtonPressed:(id)sender {
     
-//    GoogleMapDefinition *definition = [[GoogleMapDefinition alloc] init];
-//    definition.queryString = self.parkSpotAnnotation.title;
-//    definition.viewOptions = kGoogleMapsViewOptionTraffic;
-//    [[OpenInGoogleMapsController sharedInstance] openMap:definition];
-    
     GoogleDirectionsDefinition *definition = [[GoogleDirectionsDefinition alloc] init];
+    
+    //if startingPoint is set to nil, directions will start at users current location.
+    
     definition.startingPoint = nil;
-    definition.destinationPoint = [GoogleDirectionsWaypoint
-                                   waypointWithQuery:self.parkSpotAnnotation.title];
+    definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:self.parkSpotAnnotation.title];
     definition.travelMode = kGoogleMapsTravelModeDriving;
+    
     [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
     
 }
