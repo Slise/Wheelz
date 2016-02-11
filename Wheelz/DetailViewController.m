@@ -19,7 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *detailMapView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 
 @end
