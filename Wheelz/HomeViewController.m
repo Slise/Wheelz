@@ -15,16 +15,17 @@
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
 #import <MapKit/MapKit.h>
-#import "SearchViewController.h"
 
 #define zoominMapArea 1800
 
-@interface HomeViewController () <MKMapViewDelegate>
+@interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) LocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *currentLocation;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSMutableArray *parkingSpots;
+@property (strong, nonatomic) NSMutableArray *searchItems;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -32,19 +33,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.searchItems = [NSMutableArray array];
     self.mapView.showsUserLocation = true;
     self.locationManager = [LocationManager locationManager];
     [self.locationManager startLocationManager];
     [self locationUpdate];
+   // [self performSearch];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
     [self.navigationController.navigationBar setTitleTextAttributes:
       @{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:26.0f],
             NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
+- (void) performSearch:(NSString *)searchString{
+    [self.searchItems removeAllObjects];
+    MKLocalSearchRequest *request =
+    [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = searchString;
+    request.region = self.mapView.region;
+   // _matchingItems = [[NSMutableArray alloc] init];
+    MKLocalSearch *search =
+    [[MKLocalSearch alloc]initWithRequest:request];
+    [search startWithCompletionHandler:^(MKLocalSearchResponse
+                                         *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"No Matches");
+        else
+            for (MKMapItem *item in response.mapItems)
+            {
+                [self.searchItems addObject:item];
+            }
+    [self.tableView reloadData];
+    }];
+}
 
--(void)viewWillAppear:(BOOL)animated {
-    
-    
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self.searchItems count] > 0)
+        self.tableView.hidden = NO;
+    else
+        self.tableView.hidden = YES;
+    return [self.searchItems count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MKMapItem *mapAddrress = self.searchItems[indexPath.row];
+    cell.textLabel.text = mapAddrress.name;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MKMapItem *mapAddrress = self.searchItems[indexPath.row];
+    MKPointAnnotation *annotation =
+    [[MKPointAnnotation alloc]init];
+    annotation.coordinate = mapAddrress.placemark.coordinate;
+    annotation.title = mapAddrress.name;
+    [self.mapView addAnnotation:annotation];
 }
 
 -(void)addParkSpotAnnotation {
@@ -56,7 +100,11 @@
         [self.mapView addAnnotation:aAnnotation];
     }
 }
-
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    [self performSearch:textField.text];
+    return YES;
+}
 -(void)locationUpdate {
 //    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
     self.currentLocation = self.locationManager.currentLocation;
@@ -156,22 +204,5 @@
 {
     [view setCanShowCallout:YES];
 }
-
-//map style buttons
-
-//- (IBAction)btnStandardTapped:(id)sender
-//{
-//    [self.mapView setMapType:MKMapTypeStandard];
-//}
-//
-//- (IBAction)btnSatelliteTapped:(id)sender
-//{
-//    [self.mapView setMapType:MKMapTypeSatellite];
-//}
-//
-//- (IBAction)btnHybridTapped:(id)sender
-//{
-//    [self.mapView setMapType:MKMapTypeHybrid];
-//}
 
 @end
