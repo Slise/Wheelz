@@ -8,6 +8,11 @@
 
 #import "DetailViewController.h"
 #import <MapKit/MapKit.h>
+#import <Realm/Realm.h>
+#import "Wheelz-Swift.h"
+
+
+#define zoominMapArea 2100
 
 @interface DetailViewController () <MKMapViewDelegate>
 
@@ -15,24 +20,38 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
+
 @end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated {
+    
+    self.locationLabel.text = self.parkSpotAnnotation.title;
+    
+    [super viewWillAppear:animated];
+    [self initiateMap];
 }
+
+
+- (void)initiateMap {
+    
+
+   
+}
+
+
+
+
 - (IBAction)getDirectionButtonPressed:(id)sender {
     
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -40,6 +59,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
