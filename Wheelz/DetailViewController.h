@@ -15,4 +15,5 @@
 
 @property (nonatomic) ParkSpotAnnotation *parkSpotAnnotation;
 
+
 @end
