@@ -11,6 +11,7 @@
 #import <Realm/Realm.h>
 #import "Wheelz-Swift.h"
 #import <CoreLocation/CoreLocation.h>
+#import "OpenInGoogleMapsController.h"
 
 
 #define zoominMapArea 300
@@ -53,13 +54,18 @@
 
 - (IBAction)getDirectionButtonPressed:(id)sender {
     
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"comgooglemaps://"]];
-        
-    } else {
-        NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
-        [[UIApplication sharedApplication] openURL:url];
-    }
+//    GoogleMapDefinition *definition = [[GoogleMapDefinition alloc] init];
+//    definition.queryString = self.parkSpotAnnotation.title;
+//    definition.viewOptions = kGoogleMapsViewOptionTraffic;
+//    [[OpenInGoogleMapsController sharedInstance] openMap:definition];
+    
+    GoogleDirectionsDefinition *definition = [[GoogleDirectionsDefinition alloc] init];
+    definition.startingPoint = nil;
+    definition.destinationPoint = [GoogleDirectionsWaypoint
+                                   waypointWithQuery:self.parkSpotAnnotation.title];
+    definition.travelMode = kGoogleMapsTravelModeDriving;
+    [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
+    
 }
 
 - (IBAction)mapStyleControl:(id)sender {

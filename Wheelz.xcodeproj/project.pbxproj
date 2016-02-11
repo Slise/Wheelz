@@ -25,6 +25,7 @@
 		93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */; };
 		93CCA1CA1C6C0F2300F72046 /* Vancouver.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 93CCA1C91C6C0F2300F72046 /* Vancouver.gpx */; };
 		CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */; };
+		CF7990B21C6D241F005BD2CB /* OpenInGoogleMapsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7990B11C6D241F005BD2CB /* OpenInGoogleMapsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		93CCA1C91C6C0F2300F72046 /* Vancouver.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vancouver.gpx; sourceTree = "<group>"; };
 		CF71A83C1C6AB69B00C54946 /* ParkingSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkingSpot.h; sourceTree = "<group>"; };
 		CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkingSpot.m; sourceTree = "<group>"; };
+		CF7990B01C6D241F005BD2CB /* OpenInGoogleMapsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInGoogleMapsController.h; sourceTree = "<group>"; };
+		CF7990B11C6D241F005BD2CB /* OpenInGoogleMapsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInGoogleMapsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */,
 				CF71A83C1C6AB69B00C54946 /* ParkingSpot.h */,
 				CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */,
+				CF7990B01C6D241F005BD2CB /* OpenInGoogleMapsController.h */,
+				CF7990B11C6D241F005BD2CB /* OpenInGoogleMapsController.m */,
 				932951C01C69516C00364DB8 /* Assets.xcassets */,
 				932951C21C69516C00364DB8 /* LaunchScreen.storyboard */,
 				932951C51C69516C00364DB8 /* Info.plist */,
@@ -392,6 +397,7 @@
 				932951FA1C69657600364DB8 /* LocationManager.m in Sources */,
 				932951F11C69652000364DB8 /* DetailViewController.m in Sources */,
 				CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */,
+				CF7990B21C6D241F005BD2CB /* OpenInGoogleMapsController.m in Sources */,
 				932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */,
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
 				93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */,
@@ -544,7 +550,7 @@
 				INFOPLIST_FILE = Wheelz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz2;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wheelz/Wheelz-Bridging-Header.h";
@@ -563,7 +569,7 @@
 				INFOPLIST_FILE = Wheelz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz2;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.Wheelz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wheelz/Wheelz-Bridging-Header.h";
