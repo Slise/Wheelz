@@ -9,10 +9,12 @@
 #import "SearchViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+@class HomeViewController;
 
 @interface SearchViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (weak, nonatomic) HomeViewController *homeVC;
 
 @end
 
@@ -25,7 +27,7 @@
 - (IBAction)searchButtonPressed:(UITextField *)sender {
     [self getCoordinatesForAddress:self.searchTextField.text
                         completion:^(MKCoordinateRegion region) {
-                            
+            
                         }];
 }
 
@@ -44,6 +46,10 @@
     }];
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@""]) {
+        
+    }
+}
 
 @end

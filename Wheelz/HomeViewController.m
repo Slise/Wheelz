@@ -144,13 +144,9 @@
     } else if (control.tag == 1200) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
-        
         //configure detail view controller
         
         detailViewController.parkSpotAnnotation = view.annotation;
-        
-        
-    
         
         [self.navigationController pushViewController:detailViewController animated:YES];
     }

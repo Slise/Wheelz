@@ -84,7 +84,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../Vancouver.gpx"
+         identifier = "../Wheelz/Vancouver.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
