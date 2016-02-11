@@ -31,26 +31,17 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.locationLabel.text = self.parkSpotAnnotation.title;
-    
     [super viewWillAppear:animated];
     [self initiateMap];
 }
 
-
 - (void)initiateMap {
-    
-
    
 }
-
-
-
 
 - (IBAction)getDirectionButtonPressed:(id)sender {
     
 }
-
 
 #pragma mark - Navigation
 
@@ -59,6 +50,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
 
 @end

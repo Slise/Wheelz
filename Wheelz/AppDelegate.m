@@ -18,7 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
     [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:0 green:0.40 blue:1 alpha:1.0]];
     
     return YES;

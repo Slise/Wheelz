@@ -148,10 +148,7 @@
         //configure detail view controller
         
         detailViewController.parkSpotAnnotation = view.annotation;
-        
-        
     
-        
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
