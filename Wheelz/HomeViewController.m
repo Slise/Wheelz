@@ -44,6 +44,7 @@
       @{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:26.0f],
             NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
+
 - (void) performSearch:(NSString *)searchString{
     [self.searchItems removeAllObjects];
     MKLocalSearchRequest *request =
@@ -88,7 +89,12 @@
     [[MKPointAnnotation alloc]init];
     annotation.coordinate = mapAddrress.placemark.coordinate;
     annotation.title = mapAddrress.name;
+    self.tableView.hidden = YES;
+    CLLocationCoordinate2D searchedItem = mapAddrress.placemark.coordinate;
+    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(searchedItem, 400, 400);
+    [self.mapView setRegion:adjustedSearchRegion animated:YES];
     [self.mapView addAnnotation:annotation];
+    
 }
 
 -(void)addParkSpotAnnotation {
