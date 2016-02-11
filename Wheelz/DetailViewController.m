@@ -32,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     self.locationLabel.text = self.parkSpotAnnotation.title;
+    self.descriptionLabel.text = self.parkSpotAnnotation.address;
     
     [super viewWillAppear:animated];
     [self initiateMap];
