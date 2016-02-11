@@ -34,7 +34,7 @@
     
     NSMutableAttributedString *noHTML = [[NSMutableAttributedString alloc] initWithData:[self.parkSpotAnnotation.address dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
     
-    self.locationLabel.text = noHTML.string;
+    self.descriptionLabel.text = noHTML.string;
     
     [super viewWillAppear:animated];
     [self initiateMap];

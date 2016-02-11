@@ -234,6 +234,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="FY9-me-3FT" id="QWL-li-Eix"/>
                         <outlet property="detailMapView" destination="hSN-vl-lyl" id="f2y-nj-8Yj"/>
                     </connections>
                 </viewController>
