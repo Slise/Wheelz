@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParkingSpot.h"
+
+@class ParkSpotAnnotation;
 
 @interface DetailViewController : UIViewController
+
+@property (nonatomic) ParkSpotAnnotation *parkSpotAnnotation;
 
 @end

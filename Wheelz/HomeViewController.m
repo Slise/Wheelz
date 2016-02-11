@@ -69,14 +69,6 @@
     }];
 }
 
--(void)addParkSpotAnnoptation {
-    RLMResults<ParkingSpot*> *parkingSpot = [ParkingSpot allObjects];
-    for (ParkingSpot *aSpot in parkingSpot){
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(aSpot.lat, aSpot.lng);
-        ParkSpotAnnotation *aAnnotation = [[ParkSpotAnnotation alloc] initWithCoordinate: coord address:aSpot.spotDescription title:aSpot.name];
-        [self.mapView addAnnotation:aAnnotation];
-    }
-}
 
 -(void)downloadParkingLocation {
     
@@ -146,6 +138,14 @@
     } else if (control.tag == 1200) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
+        
+        //configure detail view controller
+        
+        detailViewController.parkSpotAnnotation = view.annotation;
+        
+        
+    
+        
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
