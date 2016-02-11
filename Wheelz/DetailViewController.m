@@ -63,6 +63,19 @@
     }
 }
 
+- (IBAction)mapStyleControl:(id)sender {
+    UISegmentedControl *seg=(UISegmentedControl*)sender;
+    if(seg.selectedSegmentIndex==0){
+        self.detailMapView.mapType=MKMapTypeStandard;
+    }
+    if(seg.selectedSegmentIndex==1){
+        self.detailMapView.mapType=MKMapTypeSatellite;
+    }
+    if(seg.selectedSegmentIndex==2){
+        self.detailMapView.mapType=MKMapTypeHybrid;
+    }
+    
+}
 
 
 @end
