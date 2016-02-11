@@ -20,6 +20,7 @@
 
 @interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) LocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *currentLocation;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -47,6 +48,8 @@
 
 - (void) performSearch:(NSString *)searchString{
     [self.searchItems removeAllObjects];
+    
+    NSLog(@"started request");
     MKLocalSearchRequest *request =
     [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = searchString;
@@ -56,6 +59,7 @@
     [[MKLocalSearch alloc]initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse
                                          *response, NSError *error) {
+        NSLog(@"finished request");
         if (response.mapItems.count == 0)
             NSLog(@"No Matches");
         else
@@ -97,6 +101,15 @@
     
 }
 
+- (IBAction)cancelSearchButton:(id)sender {
+    self.textField.text = @"";
+    self.tableView.hidden = YES;
+}
+
+//- (BOOL) textFieldShouldClear:(UITextField *)textField {
+//    return YES;
+//}
+
 -(void)addParkSpotAnnotation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
     NSLog(@"%@",parkingSpot);
@@ -106,11 +119,13 @@
         [self.mapView addAnnotation:aAnnotation];
     }
 }
+     
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     [self performSearch:textField.text];
     return YES;
 }
+
 -(void)locationUpdate {
 //    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
     self.currentLocation = self.locationManager.currentLocation;
@@ -201,7 +216,6 @@
         //configure detail view controller
         
         detailViewController.parkSpotAnnotation = view.annotation;
-        
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
