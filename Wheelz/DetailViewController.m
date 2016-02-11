@@ -32,8 +32,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.locationLabel.text = self.parkSpotAnnotation.title;
-    self.descriptionLabel.text = self.parkSpotAnnotation.address;
+    NSMutableAttributedString *noHTML = [[NSMutableAttributedString alloc] initWithData:[self.parkSpotAnnotation.address dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
+    
+    self.locationLabel.text = noHTML.string;
     
     [super viewWillAppear:animated];
     [self initiateMap];
@@ -61,6 +62,7 @@
         [[UIApplication sharedApplication] openURL:url];
     }
 }
+
 
 
 @end
