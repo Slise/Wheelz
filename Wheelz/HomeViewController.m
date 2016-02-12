@@ -18,6 +18,7 @@
 #import "OpenInGoogleMapsController.h"
 
 #define zoominMapArea 1800
+#define searchZoom 800
 
 @interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -92,7 +93,7 @@
     UserSearchPin *searchedSpotPin = [[UserSearchPin alloc] initWithCoordinate:mapAddrress.placemark.coordinate address:@"" title:mapAddrress.name];
     self.tableView.hidden = YES;
     CLLocationCoordinate2D searchedItem = mapAddrress.placemark.coordinate;
-    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(searchedItem, 400, 400);
+    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(searchedItem, searchZoom, searchZoom);
     [self.mapView setRegion:adjustedSearchRegion animated:YES];
     [self.mapView addAnnotation:searchedSpotPin];
     
@@ -176,19 +177,38 @@
     [self addParkSpotAnnotation];
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    CGRect visibleRect = [mapView annotationVisibleRect];
+    for (MKAnnotationView *view in views) {
+        // CHeck for view's class
+        CGRect endFrame = view.frame;
+        
+        CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+        view.frame = startFrame;
+        
+        [UIView beginAnimations:@"drop" context:NULL];
+        [UIView setAnimationDuration:1];
+        
+        view.frame = endFrame;
+        
+        [UIView commitAnimations];
+    }
+}
+
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
     else if ([annotation isKindOfClass:[UserSearchPin class]]) {
-        MKAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifierSearch"];
+        MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifierSearch"];
         if (view) {
             view.annotation = annotation;
         } else {
-            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifierSearch"];
+            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifierSearch"];
             view.enabled = YES;
             view.canShowCallout = YES;
-            view.image = [UIImage imageNamed:@"search_pin2.png"];
+            view.animatesDrop = YES;
+           // view.image = [UIImage imageNamed:@"search_pin2.png"];
         }
         return view;
     }else {
