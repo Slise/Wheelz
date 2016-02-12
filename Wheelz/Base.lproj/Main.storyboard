@@ -95,7 +95,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="parkDis" id="pN8-it-Dxr">
-                        <barButtonItem key="rightBarButtonItem" title="add spot" id="m8o-FZ-wY2"/>
+                        <barButtonItem key="rightBarButtonItem" image="location" id="m8o-FZ-wY2">
+                            <connections>
+                                <action selector="userLocationButton:" destination="s23-sc-T9Q" id="zOR-S4-nmQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -254,5 +258,6 @@
     </scenes>
     <resources>
         <image name="car_nav" width="252" height="252"/>
+        <image name="location" width="23" height="22"/>
     </resources>
 </document>

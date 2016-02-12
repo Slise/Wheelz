@@ -21,6 +21,7 @@
 
 @interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) LocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *currentLocation;
@@ -189,7 +190,7 @@
             view.canShowCallout = YES;
             view.multipleTouchEnabled = NO;
             view.animatesDrop = YES;
-            view.pinTintColor = [UIColor purpleColor];
+            view.pinTintColor = [UIColor greenColor];
         }
         return view;
     }else {
@@ -247,6 +248,14 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     [view setCanShowCallout:YES];
+}
+
+- (IBAction)userLocationButton:(id)sender {
+    
+    CLLocationCoordinate2D currentLocation = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 1100, 1100);
+    [self.mapView setRegion: adjustedSearchRegion animated:YES];
+    
 }
 
 @end
