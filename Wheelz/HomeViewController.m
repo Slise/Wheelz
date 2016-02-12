@@ -91,8 +91,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MKMapItem *mapAddrress = self.searchItems[indexPath.row];
     UserSearchPin *searchedSpotPin = [[UserSearchPin alloc] initWithCoordinate:mapAddrress.placemark.coordinate address:@"" title:mapAddrress.name];
-//    annotation.coordinate = mapAddrress.placemark.coordinate;
-//    annotation.title = mapAddrress.name;
     self.tableView.hidden = YES;
     CLLocationCoordinate2D searchedItem = mapAddrress.placemark.coordinate;
     MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(searchedItem, 400, 400);
@@ -181,31 +179,29 @@
         return nil;
     }
     else if ([annotation isKindOfClass:[UserSearchPin class]]) {
-        MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifierSearch"];
+        MKAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifierSearch"];
         if (view) {
             view.annotation = annotation;
         } else {
-            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifierSearch"];
+            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifierSearch"];
             view.enabled = YES;
             view.canShowCallout = YES;
-            view.multipleTouchEnabled = NO;
-            view.animatesDrop = YES;
-            view.pinTintColor = [UIColor greenColor];
+            view.image = [UIImage imageNamed:@"search_pin2.png"];
         }
         return view;
     }else {
-        MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
+        MKAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
         if (view) {
             view.annotation = annotation;
         } else {
-            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
+            view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
             UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             view.rightCalloutAccessoryView= infoButton;
             infoButton.tag = 1200;
             view.enabled = YES;
             view.canShowCallout = YES;
             view.multipleTouchEnabled = NO;
-            view.animatesDrop = YES;
+            view.image = [UIImage imageNamed:@"parking7.png"];
             UIImage *image = [UIImage imageNamed:@"car_nav.png"];
             UIButton *openGoogleMap = [UIButton buttonWithType:UIButtonTypeCustom];
             openGoogleMap.frame = CGRectMake(0, 0, 44, 44);
