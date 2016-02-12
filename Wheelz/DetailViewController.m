@@ -62,7 +62,11 @@
     definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:self.parkSpotAnnotation.title];
     definition.travelMode = kGoogleMapsTravelModeDriving;
     
+    //set a fallback strategy to open in apple maps if google maps isnt installed
+    [OpenInGoogleMapsController sharedInstance].fallbackStrategy = kGoogleMapsFallbackChromeThenSafari;
+    
     [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
+    
     
 }
 

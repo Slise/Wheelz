@@ -118,14 +118,13 @@
     }
 }
      
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     [self performSearch:textField.text];
     return YES;
 }
 
 -(void)locationUpdate {
-//    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
+
     self.currentLocation = self.locationManager.currentLocation;
     CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([self.currentLocation coordinate].latitude, [self.currentLocation coordinate].longitude);
     MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
@@ -232,6 +231,8 @@
         definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:view.annotation.title];
         definition.travelMode = kGoogleMapsTravelModeDriving;
         
+        [OpenInGoogleMapsController sharedInstance].fallbackStrategy = kGoogleMapsFallbackChromeThenSafari;
+        
         [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
 
     } else if (control.tag == 1200) {
@@ -254,7 +255,7 @@
 - (IBAction)userLocationButton:(id)sender {
     
     CLLocationCoordinate2D currentLocation = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
-    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 1100, 1100);
+    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(currentLocation, zoominMapArea, zoominMapArea);
     [self.mapView setRegion: adjustedSearchRegion animated:YES];
     
 }
