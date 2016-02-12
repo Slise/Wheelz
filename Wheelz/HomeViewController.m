@@ -41,7 +41,6 @@
     self.locationManager = [LocationManager locationManager];
     [self.locationManager startLocationManager];
     [self locationUpdate];
-   // [self performSearch];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdate) name:@"updatedLocation" object:nil];
     [self.navigationController.navigationBar setTitleTextAttributes:
       @{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:26.0f],
@@ -97,6 +96,10 @@
     [self.mapView setRegion:adjustedSearchRegion animated:YES];
     [self.mapView addAnnotation:searchedSpotPin];
     
+    //remove keyboard after pressing return on keyboard
+    
+    [[self view] endEditing:YES];
+    
 }
 
 - (IBAction)cancelSearchButton:(id)sender {
@@ -104,9 +107,6 @@
     self.tableView.hidden = YES;
 }
 
-//- (BOOL) textFieldShouldClear:(UITextField *)textField {
-//    return YES;
-//}
 
 -(void)addParkSpotAnnotation {
     RLMResults<ParkingSpot *> *parkingSpot = [ParkingSpot allObjects];
@@ -118,14 +118,13 @@
     }
 }
      
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     [self performSearch:textField.text];
     return YES;
 }
 
 -(void)locationUpdate {
-//    NSLog(@"CURRENT LOCATION: %f, %f", [self.locationManager.currentLocation coordinate].latitude, [self.locationManager.currentLocation coordinate].longitude);
+
     self.currentLocation = self.locationManager.currentLocation;
     CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake([self.currentLocation coordinate].latitude, [self.currentLocation coordinate].longitude);
     MKCoordinateRegion adjustedRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, zoominMapArea, zoominMapArea);
@@ -152,20 +151,23 @@
     self.parkingSpots = xmlDoc[@"Document"][@"Folder"][@"Placemark"];
     
     for (NSDictionary *spot in self.parkingSpots) {
+        
         NSString *uniqueID = [spot objectForKey:@"_id"];
         NSString *name = [spot objectForKey:@"name"];
         NSString *spotDesciption = [spot objectForKey:@"description"];
         NSString *location = spot[@"Point"][@"coordinates"];
+        
         NSArray *coordinates = [location componentsSeparatedByString:@","];
         double lng = [coordinates[0] doubleValue];
         double lat = [coordinates[1] doubleValue];
-//        CLLocationCoordinate2D spotLocation = CLLocationCoordinate2DMake(lat, lng);
+
         ParkingSpot *newSpot = [[ParkingSpot alloc] init];
         newSpot.uniqueID = uniqueID;
         newSpot.name = name;
         newSpot.spotDescription = spotDesciption;
         newSpot.lng = lng;
         newSpot.lat = lat;
+        
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [realm addOrUpdateObject:newSpot];
@@ -227,6 +229,8 @@
         definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:view.annotation.title];
         definition.travelMode = kGoogleMapsTravelModeDriving;
         
+        [OpenInGoogleMapsController sharedInstance].fallbackStrategy = kGoogleMapsFallbackChromeThenSafari;
+        
         [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
 
     } else if (control.tag == 1200) {
@@ -249,9 +253,13 @@
 - (IBAction)userLocationButton:(id)sender {
     
     CLLocationCoordinate2D currentLocation = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
-    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 1100, 1100);
+    MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(currentLocation, zoominMapArea, zoominMapArea);
     [self.mapView setRegion: adjustedSearchRegion animated:YES];
     
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self view] endEditing:YES];
 }
 
 @end
