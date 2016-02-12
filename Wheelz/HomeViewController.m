@@ -191,7 +191,7 @@
         
         definition.startingPoint = nil;
         
-        // access the "MKAnnotationView *view" directly
+        // accessing "MKAnnotationView *view" title property and passing to destinationPoint 
         
         definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:view.annotation.title];
         definition.travelMode = kGoogleMapsTravelModeDriving;
