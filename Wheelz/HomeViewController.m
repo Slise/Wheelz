@@ -54,7 +54,6 @@
     [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = searchString;
     request.region = self.mapView.region;
-   // _matchingItems = [[NSMutableArray alloc] init];
     MKLocalSearch *search =
     [[MKLocalSearch alloc]initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse
@@ -89,15 +88,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MKMapItem *mapAddrress = self.searchItems[indexPath.row];
-    MKPointAnnotation *annotation =
-    [[MKPointAnnotation alloc]init];
-    annotation.coordinate = mapAddrress.placemark.coordinate;
-    annotation.title = mapAddrress.name;
+    UserSearchPin *searchedSpotPin = [[UserSearchPin alloc] initWithCoordinate:mapAddrress.placemark.coordinate address:@"" title:mapAddrress.name];
+//    annotation.coordinate = mapAddrress.placemark.coordinate;
+//    annotation.title = mapAddrress.name;
     self.tableView.hidden = YES;
     CLLocationCoordinate2D searchedItem = mapAddrress.placemark.coordinate;
     MKCoordinateRegion adjustedSearchRegion = MKCoordinateRegionMakeWithDistance(searchedItem, 400, 400);
     [self.mapView setRegion:adjustedSearchRegion animated:YES];
-    [self.mapView addAnnotation:annotation];
+    [self.mapView addAnnotation:searchedSpotPin];
     
 }
 
@@ -180,26 +178,41 @@
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
-    if (view) {
-        view.annotation = annotation;
-    } else {
-        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
-        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        view.rightCalloutAccessoryView= infoButton;
-        infoButton.tag = 1200;
-        view.enabled = YES;
-        view.canShowCallout = YES;
-        view.multipleTouchEnabled = NO;
-        view.animatesDrop = YES;
-        UIImage *image = [UIImage imageNamed:@"car_nav.png"];
-        UIButton *openGoogleMap = [UIButton buttonWithType:UIButtonTypeCustom];
-        openGoogleMap.frame = CGRectMake(0, 0, 44, 44);
-        [openGoogleMap setImage:image forState:UIControlStateNormal];
-        view.leftCalloutAccessoryView = openGoogleMap;
-        openGoogleMap.tag = 1000;
-    }       
-    return view;
+    else if ([annotation isKindOfClass:[UserSearchPin class]]) {
+        MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifierSearch"];
+        if (view) {
+            view.annotation = annotation;
+        } else {
+            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifierSearch"];
+            view.enabled = YES;
+            view.canShowCallout = YES;
+            view.multipleTouchEnabled = NO;
+            view.animatesDrop = YES;
+            view.pinTintColor = [UIColor purpleColor];
+        }
+        return view;
+    }else {
+        MKPinAnnotationView *view = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
+        if (view) {
+            view.annotation = annotation;
+        } else {
+            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
+            UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            view.rightCalloutAccessoryView= infoButton;
+            infoButton.tag = 1200;
+            view.enabled = YES;
+            view.canShowCallout = YES;
+            view.multipleTouchEnabled = NO;
+            view.animatesDrop = YES;
+            UIImage *image = [UIImage imageNamed:@"car_nav.png"];
+            UIButton *openGoogleMap = [UIButton buttonWithType:UIButtonTypeCustom];
+            openGoogleMap.frame = CGRectMake(0, 0, 44, 44);
+            [openGoogleMap setImage:image forState:UIControlStateNormal];
+            view.leftCalloutAccessoryView = openGoogleMap;
+            openGoogleMap.tag = 1000;
+        }       
+        return view;
+    }
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {

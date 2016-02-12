@@ -22,6 +22,7 @@
 		932951FA1C69657600364DB8 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951F91C69657600364DB8 /* LocationManager.m */; };
 		932951FC1C6965C700364DB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FB1C6965C700364DB8 /* CoreLocation.framework */; };
 		932951FE1C6965FE00364DB8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932951FD1C6965FE00364DB8 /* MapKit.framework */; };
+		9394AB561C6D6C52004450B6 /* UserSearchPIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394AB551C6D6C52004450B6 /* UserSearchPIn.swift */; };
 		93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */; };
 		93CCA1CA1C6C0F2300F72046 /* Vancouver.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 93CCA1C91C6C0F2300F72046 /* Vancouver.gpx */; };
 		CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */; };
@@ -74,6 +75,7 @@
 		932951F91C69657600364DB8 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		932951FB1C6965C700364DB8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		932951FD1C6965FE00364DB8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9394AB551C6D6C52004450B6 /* UserSearchPIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchPIn.swift; sourceTree = "<group>"; };
 		93CCA1C01C6A9D1500F72046 /* Wheelz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wheelz-Bridging-Header.h"; sourceTree = "<group>"; };
 		93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpotAnnotation.swift; sourceTree = "<group>"; };
 		93CCA1C91C6C0F2300F72046 /* Vancouver.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vancouver.gpx; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				932951F81C69657600364DB8 /* LocationManager.h */,
 				932951F91C69657600364DB8 /* LocationManager.m */,
 				93CCA1C11C6A9D1600F72046 /* ParkingSpotAnnotation.swift */,
+				9394AB551C6D6C52004450B6 /* UserSearchPIn.swift */,
 				CF71A83C1C6AB69B00C54946 /* ParkingSpot.h */,
 				CF71A83D1C6AB69B00C54946 /* ParkingSpot.m */,
 				CF7990B01C6D241F005BD2CB /* OpenInGoogleMapsController.h */,
@@ -402,6 +405,7 @@
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
 				93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */,
 				932951B61C69516C00364DB8 /* main.m in Sources */,
+				9394AB561C6D6C52004450B6 /* UserSearchPIn.swift in Sources */,
 				932951EE1C69650100364DB8 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
