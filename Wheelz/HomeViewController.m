@@ -15,6 +15,7 @@
 #import "ParkingSpot.h"
 #import <Realm/Realm.h>
 #import <MapKit/MapKit.h>
+#import "OpenInGoogleMapsController.h"
 
 #define zoominMapArea 1800
 
@@ -217,15 +218,25 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     if (control.tag == 1000) {
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"comgooglemaps://"]];
-        }else {
-            NSURL *url = [NSURL URLWithString:@"http://maps.google.com/?q=Vancouver"];
-            [[UIApplication sharedApplication] openURL:url];
-        }
+        
+        GoogleDirectionsDefinition *definition = [[GoogleDirectionsDefinition alloc] init];
+        
+        //if startingPoint is set to nil, directions will start at users current location.
+        
+        definition.startingPoint = nil;
+        
+        // accessing "MKAnnotationView *view" title property and passing to destinationPoint 
+        
+        definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:view.annotation.title];
+        definition.travelMode = kGoogleMapsTravelModeDriving;
+        
+        [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
+
     } else if (control.tag == 1200) {
+        
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
+        
         //configure detail view controller
         
         detailViewController.parkSpotAnnotation = view.annotation;
