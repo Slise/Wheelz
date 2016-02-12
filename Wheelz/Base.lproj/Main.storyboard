@@ -133,14 +133,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hSN-vl-lyl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="378"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hSN-vl-lyl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="375" id="0VZ-lR-HHr"/>
                                 </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCn-r6-Bg1">
-                                <rect key="frame" x="536" y="381" width="44" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCn-r6-Bg1">
+                                <rect key="frame" x="536" y="378" width="44" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="9GG-bP-e42"/>
                                     <constraint firstAttribute="width" constant="44" id="DBL-4z-DoK"/>
@@ -160,8 +160,8 @@
                                     <action selector="getDirectionButtonPressed:" destination="cxQ-Ua-Vk9" eventType="touchUpInside" id="Ok6-fT-Boa"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sVm-aE-X8c">
-                                <rect key="frame" x="194" y="386" width="212" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sVm-aE-X8c">
+                                <rect key="frame" x="194" y="383" width="212" height="29"/>
                                 <segments>
                                     <segment title="Standard"/>
                                     <segment title="Satelite"/>
@@ -172,8 +172,8 @@
                                     <action selector="mapStyleControl:" destination="cxQ-Ua-Vk9" eventType="valueChanged" id="FVY-GU-Dvk"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="location label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY9-me-3FT">
-                                <rect key="frame" x="20" y="427" width="560" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY9-me-3FT">
+                                <rect key="frame" x="20" y="424" width="101" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="9JG-BK-pFc"/>
                                 </constraints>
