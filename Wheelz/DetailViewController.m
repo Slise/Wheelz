@@ -14,7 +14,7 @@
 #import "OpenInGoogleMapsController.h"
 
 
-#define zoominMapArea 300
+#define zoominMapArea 600
 
 @interface DetailViewController () <MKMapViewDelegate>
 
