@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60A31DA930689ECD0E1A932D /* libPods-Wheelz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7083129AC97004A55C5C55D0 /* libPods-Wheelz.a */; };
+		9302245B1C98CA8A00B33B75 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302245A1C98CA8A00B33B75 /* CustomAnnotationView.swift */; };
 		932951B61C69516C00364DB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951B51C69516C00364DB8 /* main.m */; };
 		932951B91C69516C00364DB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 932951B81C69516C00364DB8 /* AppDelegate.m */; };
 		932951BF1C69516C00364DB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932951BD1C69516C00364DB8 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		2F23FB01BA9B4A04BD37B241 /* Pods-Wheelz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz.debug.xcconfig"; sourceTree = "<group>"; };
 		621E78F939C78E6612BC5714 /* Pods-Wheelz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelz/Pods-Wheelz.release.xcconfig"; sourceTree = "<group>"; };
 		7083129AC97004A55C5C55D0 /* libPods-Wheelz.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelz.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9302245A1C98CA8A00B33B75 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		932951B11C69516C00364DB8 /* Wheelz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932951B51C69516C00364DB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		932951B71C69516C00364DB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				932951C51C69516C00364DB8 /* Info.plist */,
 				932951B41C69516C00364DB8 /* Supporting Files */,
 				93CCA1C01C6A9D1500F72046 /* Wheelz-Bridging-Header.h */,
+				9302245A1C98CA8A00B33B75 /* CustomAnnotationView.swift */,
 			);
 			path = Wheelz;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				CF71A83E1C6AB69B00C54946 /* ParkingSpot.m in Sources */,
 				CF7990B21C6D241F005BD2CB /* OpenInGoogleMapsController.m in Sources */,
 				932951E91C695D4C00364DB8 /* XMLDictionary.m in Sources */,
+				9302245B1C98CA8A00B33B75 /* CustomAnnotationView.swift in Sources */,
 				932951B91C69516C00364DB8 /* AppDelegate.m in Sources */,
 				93CCA1C21C6A9D1600F72046 /* ParkingSpotAnnotation.swift in Sources */,
 				932951B61C69516C00364DB8 /* main.m in Sources */,

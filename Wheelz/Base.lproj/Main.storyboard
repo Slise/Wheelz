@@ -151,13 +151,13 @@
                                     <action selector="mapStyleControl:" destination="cxQ-Ua-Vk9" eventType="valueChanged" id="FVY-GU-Dvk"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY9-me-3FT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="location label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY9-me-3FT">
                                 <rect key="frame" x="20" y="424" width="101" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="9JG-BK-pFc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.60435888780000002" green="0.68230341049999998" blue="0.76270517680000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.28459087170000003" green="0.75200452299999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hSN-vl-lyl" firstAttribute="leading" secondItem="f9r-OZ-WYV" secondAttribute="leadingMargin" constant="-20" id="0Tc-na-IGP"/>
                             <constraint firstItem="sVm-aE-X8c" firstAttribute="centerX" secondItem="f9r-OZ-WYV" secondAttribute="centerX" id="1pd-vN-O1d"/>
@@ -229,6 +229,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="FY9-me-3FT" id="QWL-li-Eix"/>
                         <outlet property="detailMapView" destination="hSN-vl-lyl" id="f2y-nj-8Yj"/>
+                        <outlet property="getDirectionsButton" destination="gCn-r6-Bg1" id="68b-Wh-L14"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOV-TV-cGb" userLabel="First Responder" sceneMemberID="firstResponder"/>

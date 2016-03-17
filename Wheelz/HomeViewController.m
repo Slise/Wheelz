@@ -20,7 +20,7 @@
 #define zoominMapArea 1800
 #define searchZoom 800
 
-@interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface HomeViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -30,6 +30,8 @@
 @property (strong, nonatomic) NSMutableArray *parkingSpots;
 @property (strong, nonatomic) NSMutableArray *searchItems;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) ParkSpotAnnotation *parkSpotAnnotation;
+
 
 @end
 
@@ -182,21 +184,18 @@
     for (MKAnnotationView *view in views) {
         // CHeck for view's class
         CGRect endFrame = view.frame;
-        
         CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
         view.frame = startFrame;
-        
         [UIView beginAnimations:@"drop" context:NULL];
         [UIView setAnimationDuration:1];
-        
         view.frame = endFrame;
-        
         [UIView commitAnimations];
     }
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    
+      if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
     else if ([annotation isKindOfClass:[UserSearchPin class]]) {
@@ -244,7 +243,7 @@
         
         definition.startingPoint = nil;
         
-        // accessing "MKAnnotationView *view" title property and passing to destinationPoint 
+        // accessing "MKAnnotationView *view" title property and passing to destinationPoint
         
         definition.destinationPoint = [GoogleDirectionsWaypoint waypointWithQuery:view.annotation.title];
         definition.travelMode = kGoogleMapsTravelModeDriving;
@@ -252,15 +251,16 @@
         [OpenInGoogleMapsController sharedInstance].fallbackStrategy = kGoogleMapsFallbackChromeThenSafari;
         
         [[OpenInGoogleMapsController sharedInstance] openDirections:definition];
-
+        
     } else if (control.tag == 1200) {
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DetailViewController *detailViewController  =[mainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
-        
-        //configure detail view controller
-        
         detailViewController.parkSpotAnnotation = view.annotation;
+//        detailViewController.modalPresentationStyle = UIModalPresentationPopover;
+//        detailViewController.popoverPresentationController.sourceView = view;
+//        detailViewController.popoverPresentationController.delegate = self;
+//        [self presentViewController:detailViewController animated:true completion:nil];
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
@@ -281,5 +281,11 @@
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [[self view] endEditing:YES];
 }
+
+//- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+//                                                               traitCollection:(UITraitCollection *)traitCollection {
+//    return UIModalPresentationNone;
+//}
+
 
 @end
